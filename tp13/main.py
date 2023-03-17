@@ -3,8 +3,12 @@ import sqlite3
 from TodoDAO import TodoDAO
 from Todo import Todo
 
-
 def main():
+    todoDAO = TodoDAO("todos.db")
+    for todo in todoDAO.findAll():
+        print(todo)
+    
+def main_save():
     url="https://jsonplaceholder.typicode.com/todos"
     response =  requests.get(url)
     todos = response.json()

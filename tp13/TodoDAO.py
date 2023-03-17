@@ -5,7 +5,7 @@ import sqlite3
 
 class TodoDAO:
 
-    def __init__(self,db_file_name) -> None:
+    def __init__(self,db_file_name) :
         self._con = sqlite3.connect(db_file_name)
 
 
@@ -19,8 +19,9 @@ class TodoDAO:
     def findAll(self):
         cur = self._con.cursor()
         # all=[]
-        sql = "SELECT * FROM todos_tbl"
+        sql = "SELECT * FROM todo_tbl"
         for id,title,userId,completed in cur.execute(sql):
+            
             todo = Todo(id=id,userId=userId,completed=bool(completed),title=title)
             # all.append(todo)
             yield todo
